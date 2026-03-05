@@ -27,6 +27,8 @@
 | 🔒 **隐私保护** | 所有检测在本地完成，图片数据不会上传到服务器 |
 
 ---
+## ✨ 示例截图
+<img width="1411" height="729" alt="image" src="https://github.com/user-attachments/assets/e20616bb-b1a8-4c9d-9b8c-5e10789147fb" />
 
 ## 🚀 快速开始
 
