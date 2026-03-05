@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>目标检测系统</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 目标检测系统</h1>
+            <p>基于ONNX模型的实时目标检测</p>
+        </header>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="mode-select">检测模式：</label>
+                <select id="mode-select">
+                    <option value="upload">上传图片</option>
+                    <option value="camera">实时摄像头</option>
+                </select>
+            </div>
+
+            <div id="upload-controls" class="control-group">
+                <label for="file-input" class="file-label">
+                    <span>📁 选择图片</span>
+                    <input type="file" id="file-input" accept="image/*" hidden>
+                </label>
+                <button id="detect-btn" class="btn btn-primary" disabled>开始检测</button>
+            </div>
+
+            <div id="camera-controls" class="control-group" style="display: none;">
+                <button id="start-camera-btn" class="btn btn-success">启动摄像头</button>
+                <button id="stop-camera-btn" class="btn btn-danger" disabled>停止摄像头</button>
+            </div>
+
+            <div class="control-group">
+                <label>
+                    <input type="checkbox" id="auto-detect" checked>
+                    自动检测（摄像头模式）
+                </label>
+            </div>
+
+            <div class="control-group confidence-control">
+                <label for="confidence-slider" style="min-width: 80px;">置信度阈值:</label>
+                <input type="range" id="confidence-slider" min="0" max="100" value="30" step="1" style="flex: 1; margin: 0 10px;">
+                <span id="confidence-value" style="min-width: 50px; text-align: right; font-weight: bold;">0.30</span>
+            </div>
+
+            <div class="control-group supported-classes">
+                <span class="classes-label">支持检测：</span>
+                <span class="class-tag">📱 手机</span>
+                <span class="class-tag">📚 书本</span>
+                <span class="class-tag">⌨️ 键盘</span>
+                <span class="class-tag">🖱️ 鼠标</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="canvas-container">
+                <canvas id="canvas"></canvas>
+                <div id="loading" class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>加载模型中...</p>
+                </div>
+                <div id="status" class="status"></div>
+            </div>
+
+            <div class="info-panel">
+                <h3>检测信息</h3>
+                <div id="detection-info">
+                    <p class="info-text">等待检测...</p>
+                </div>
+                <div class="model-info">
+                    <h4>模型信息</h4>
+                    <p id="model-status">未加载</p>
+                    <div id="model-details" style="font-size: 0.85em; color: #888; margin-top: 5px;"></div>
+                </div>
+                <div class="debug-info" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
+                    <h4>调试信息</h4>
+                    <button id="toggle-debug" class="btn" style="padding: 5px 10px; font-size: 12px; margin-bottom: 10px;">显示调试</button>
+                    <div id="debug-output" style="display: none; font-size: 0.8em; color: #666; max-height: 200px; overflow-y: auto; background: #f0f0f0; padding: 10px; border-radius: 4px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

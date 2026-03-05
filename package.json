@@ -1,0 +1,24 @@
+{
+  "name": "object-detection-web",
+  "version": "1.0.0",
+  "description": "基于ONNX的目标检测Web应用",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "onnx",
+    "object-detection",
+    "web"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "onnxruntime-web": "^1.19.2"
+  },
+  "devDependencies": {},
+  "volta": {
+    "node": "16.20.2"
+  }
+}
